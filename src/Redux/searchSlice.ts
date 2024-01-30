@@ -28,6 +28,7 @@ export const searchSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchData.fulfilled, (state, action) => {
             state.data = action.payload;
+            //
         });
     },
 });
