@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
+import axios from "axios";
 
-export default function Header() {
-  return (
-    <div>Header</div>
-  )
-}
+const Header = () => {
+    return <div>Header</div>;
+};
+
+export default Header;
