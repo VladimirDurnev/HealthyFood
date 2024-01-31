@@ -1,0 +1,13 @@
+.info{
+    text-align: center;
+    font-weight: 400;
+    padding: 200px 0 100px 0;
+}
+.title{
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 25px;
+}
+.desc{
+    font-size: 18px;
+}

@@ -5,9 +5,10 @@ import axios from "axios";
 
 export const fetchData = createAsyncThunk("data/fetchData", async () => {
     const { data } = await axios.get(
-        `https://65a6851e74cf4207b4f0442f.mockapi.io/Test`
+        "https://api.edamam.com/api/recipes/v2?type=public&app_id=f5c340d8&app_key=fba58c05fd7410ca5bc1cd6cc3825eac&calories=0-150&health=alcohol-free&random=true"
     );
-    return data;
+    // `https://65a6851e74cf4207b4f0442f.mockapi.io/Test`
+    return data.hits;
 });
 
 type dataItem = Record<string, string>;
