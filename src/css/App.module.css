@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-weight: 400;
+    font-size: 18px;
+    font-family: "Lora", serif;
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.container {
+    width: 1200px;
+    padding: 0 25px;
+    margin: auto;
+}
+button{
+    cursor: pointer;
+}
