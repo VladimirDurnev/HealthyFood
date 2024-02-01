@@ -1,13 +1,27 @@
-.info{
+.info {
     text-align: center;
     font-weight: 400;
     padding: 200px 0 100px 0;
 }
-.title{
+.title {
     font-weight: 700;
     font-size: 48px;
     margin-bottom: 25px;
 }
-.desc{
+.desc {
     font-size: 18px;
+}
+.card_section {
+    padding: 100px 0;
+}
+.card_title{
+    padding: 0 0 25px 0;
+}
+.card_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 30px;
+
 }

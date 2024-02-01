@@ -36,12 +36,14 @@ export default function Category() {
 
             <div className={style.wrapper}>
                 {category.map((item) => (
-                    <Link to={item.title} key={item.img}>
-                        <div className={style.wrapper_item}>
-                            <img src={item.img} alt="img"></img>
+                    <Link
+                        to={item.title}
+                        key={item.img}
+                        className={style.wrapper_item}
+                    >
+                        <img src={item.img} alt="img"></img>
 
-                            <p>{item.title}</p>
-                        </div>
+                        <h4>{item.title}</h4>
                     </Link>
                 ))}
             </div>

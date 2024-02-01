@@ -1,0 +1,62 @@
+.wrapper {
+    border-radius: 25px;
+    text-align: center;
+
+    box-shadow: 10px 10px 5px rgb(236, 236, 236);
+    width: 280px;
+    transition: 0.5s;
+}
+.wrapper:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 5px 5px 5px rgb(181, 181, 181);
+}
+.label {
+    padding: 20px 0 0 0;
+    width: 260px;
+    padding: 25px 0;
+    margin: auto;
+    font-size: 16px;
+}
+.wrapper_image {
+    width: 280px;
+    height: 280px;
+    position: relative;
+}
+.wrapper_image img {
+    border-radius: 25px 25px 0 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+}
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    border-radius: 25px 25px 0 0;
+}
+.wrapper_image p {
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0);
+    font-weight: 700;
+}
+.card_button {
+    border: 1px solid rgb(167, 167, 167);
+    padding: 5px 10px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.card_button :hover {
+    scale: 1.1;
+}

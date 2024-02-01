@@ -8,12 +8,12 @@
     background-color: rgb(255, 255, 255);
     text-decoration: none;
 }
-
+h3{
+    font-size: 25px;
+    font-weight: 600;
+}
 .container {
     width: 1200px;
     padding: 0 25px;
     margin: auto;
-}
-button{
-    cursor: pointer;
 }
