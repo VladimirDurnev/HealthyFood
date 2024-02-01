@@ -8,9 +8,8 @@ const Header = () => {
     return (
         <header className={style.header_wrapper}>
             <div className={style.container}>
-                <Link to="/" className={style.wrapper}>
-                    <img src={logo} alt="" />
-                    <h1>low-calorie</h1>
+                <Link to="/" >
+                    <img className={style.logo} src={logo} alt="" />
                 </Link>
                 <div className={style.search}>
                     <input type="text" placeholder="Поиск" />

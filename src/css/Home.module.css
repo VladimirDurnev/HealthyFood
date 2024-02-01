@@ -14,14 +14,22 @@
 .card_section {
     padding: 100px 0;
 }
-.card_title{
-    padding: 0 0 25px 0;
-}
+
 .card_wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 15px;
     grid-row-gap: 30px;
-
+    
+}
+.random_wrapper{
+    padding: 0 0 25px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.active{
+    rotate: 360deg;
+    transition: .5s;
+    scale: 1.05;
 }
