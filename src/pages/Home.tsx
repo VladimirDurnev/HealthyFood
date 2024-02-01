@@ -8,14 +8,14 @@ import style from "../css/Home.module.css";
 import reboot from "../assets/reboot.png";
 export default function Home() {
     const dispatch = useAppDispatch();
-    const [rebootStatus, setRebootStatus] = useState(false)
+    const [rebootStatus, setRebootStatus] = useState(false);
     const { data } = useAppSelector((state) => state.searchSlice);
     const newData = data.map(({ recipe }: any) => recipe);
 
     const hendleReboot = () => {
-        setRebootStatus(true)
-        setTimeout(() => setRebootStatus(false), 500)
-    }
+        setRebootStatus(true);
+        setTimeout(() => setRebootStatus(false), 500);
+    };
 
     useEffect(() => {
         dispatch(fetchData());
@@ -31,6 +31,7 @@ export default function Home() {
                     desserts.
                 </h2>
             </div>
+            <div className={style.shadow}></div>
             <Category></Category>
 
             {/* {data.map(({ recipe }: any) => (
@@ -45,8 +46,14 @@ export default function Home() {
             <div className={style.card_section}>
                 <div className={style.random_wrapper}>
                     <h3 className={style.card_title}>Random recipes: </h3>
-                    <button onClick={() => dispatch(fetchData())}>
-                        <img onClick={() => hendleReboot()} className={rebootStatus && style.active} src={reboot} alt="reboot"></img>
+                    <button
+                        onClick={() => {
+                            dispatch(fetchData());
+                            hendleReboot();
+                        }}
+                        className={rebootStatus && style.active}
+                    >
+                        <img src={reboot} alt="reboot"></img>
                     </button>
                 </div>
                 <div className={style.card_wrapper}>

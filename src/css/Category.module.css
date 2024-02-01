@@ -1,5 +1,5 @@
 .wrapper_category {
-    padding: 0px 0;
+    padding: 50px 0 0 0;
 }
 .title {
     margin-bottom: 25px;
@@ -8,14 +8,16 @@
     display: flex;
     justify-content: space-between;
 }
-.wrapper :hover {
-    transition: 0.5s;
-    cursor: pointer;
-    transform: translateY(-3px);
-}
+
 .wrapper_item {
     width: 120px;
     text-align: center;
+    transition: .5s;
+}
+.wrapper_item:hover {
+    transition: 0.5s;
+    cursor: pointer;
+    transform: translateY(-3px);
 }
 .wrapper_item img {
     width: 120px;
