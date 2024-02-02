@@ -10,7 +10,7 @@ export default function Category() {
         },
         {
             title: "Brunch",
-            img: "https://m-files.cdnvideo.ru/lpfile/e/e/2/ee26fe9e172bccbe9c6bc5de96d0cf16/-/scale/x2/-/crop/0x244x1680x1827/-/resize/357/-/quality/100/f.jpg",
+            img: "https://i.pinimg.com/736x/42/c2/d0/42c2d0408286a6b4f0c464f884d51f74.jpg",
         },
         {
             title: "Lunch",

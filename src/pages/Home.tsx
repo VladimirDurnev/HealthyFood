@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { fetchRandom } from "../Redux/homeSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
-
+import { setRecipe } from "../Redux/recipeSlice";
+import { selectHome } from "../Redux/homeSlice";
 import Category from "../Components/Category";
 import Card from "../Components/Card";
 import style from "../css/Home.module.css";
@@ -9,8 +10,7 @@ import reboot from "../assets/reboot.png";
 export default function Home() {
     const dispatch = useAppDispatch();
     const [rebootStatus, setRebootStatus] = useState(false);
-    const { data } = useAppSelector((state) => state.homeSlice);
-    const newData = data.map(({ recipe }: any) => recipe);
+    const data = useAppSelector(selectHome);
 
     const hendleReboot = () => {
         setRebootStatus(true);
@@ -18,7 +18,9 @@ export default function Home() {
     };
 
     useEffect(() => {
-        dispatch(fetchRandom());
+        if (data.length === 0) {
+            dispatch(fetchRandom());
+        }
     }, [dispatch]);
     return (
         <div>
@@ -34,15 +36,6 @@ export default function Home() {
             <div className={style.shadow}></div>
             <Category></Category>
 
-            {/* {data.map(({ recipe }: any) => (
-                <div>
-                    <h3>{recipe.label}</h3>
-                    <img src={recipe.image} alt='img'></img>
-                    <p>Calories: {Math.round(recipe.calories)}</p>
-                    <p>The weight of the dish: {Math.round(recipe.totalWeight)} g</p>
-                    <p>Cooking time: {recipe.totalTime} m</p>
-                </div>
-            ))} */}
             <div className={style.card_section}>
                 <div className={style.random_wrapper}>
                     <h3 className={style.card_title}>Random recipes: </h3>
@@ -58,7 +51,11 @@ export default function Home() {
                 </div>
                 <div className={style.card_wrapper}>
                     {data.map((obj) => (
-                        <Card {...obj}></Card>
+                        <Card
+                            onClick={() => dispatch(setRecipe({ ...obj }))}
+                            key={obj.image}
+                            {...obj}
+                        ></Card>
                     ))}
                 </div>
             </div>

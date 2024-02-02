@@ -1,0 +1,32 @@
+.wrapper {
+    padding: 200px 0 100px 0;
+}
+.label {
+    margin-bottom: 25px;
+    background-color: rgba(69, 131, 15, 0.2);
+}
+.recipeImage {
+    width: 600px;
+    border-radius: 25px;
+}
+
+.wrapper_info {
+    height: 300px;
+    width: 600px;
+    margin: 25px 0;
+    background-color: rgba(69, 131, 15, 0.2);
+}
+.health {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+}
+
+.health li{
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid black;
+    
+}
