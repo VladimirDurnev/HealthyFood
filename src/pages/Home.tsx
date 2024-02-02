@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchData } from "../Redux/searchSlice";
+import { fetchRandom } from "../Redux/homeSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 
 import Category from "../Components/Category";
@@ -9,7 +9,7 @@ import reboot from "../assets/reboot.png";
 export default function Home() {
     const dispatch = useAppDispatch();
     const [rebootStatus, setRebootStatus] = useState(false);
-    const { data } = useAppSelector((state) => state.searchSlice);
+    const { data } = useAppSelector((state) => state.homeSlice);
     const newData = data.map(({ recipe }: any) => recipe);
 
     const hendleReboot = () => {
@@ -18,7 +18,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        dispatch(fetchData());
+        dispatch(fetchRandom());
     }, [dispatch]);
     return (
         <div>
@@ -48,7 +48,7 @@ export default function Home() {
                     <h3 className={style.card_title}>Random recipes: </h3>
                     <button
                         onClick={() => {
-                            dispatch(fetchData());
+                            dispatch(fetchRandom());
                             hendleReboot();
                         }}
                         className={rebootStatus && style.active}
@@ -57,8 +57,8 @@ export default function Home() {
                     </button>
                 </div>
                 <div className={style.card_wrapper}>
-                    {data.map(({ recipe }: any) => (
-                        <Card {...recipe}></Card>
+                    {data.map((obj) => (
+                        <Card {...obj}></Card>
                     ))}
                 </div>
             </div>
