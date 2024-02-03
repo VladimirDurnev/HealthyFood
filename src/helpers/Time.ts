@@ -1,4 +1,4 @@
-export const timeCalc = (totalTime: number) => {
+export const timeCalc = (totalTime: number): string => {
     return totalTime / 60 >= 1
         ? Math.round(totalTime / 60) +
               " hr " +

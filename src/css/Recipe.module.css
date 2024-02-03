@@ -1,20 +1,39 @@
 .wrapper {
-    padding: 200px 0 100px 0;
+    padding: 150px 0 100px 0;
 }
 .label {
     margin-bottom: 25px;
-    background-color: rgba(69, 131, 15, 0.2);
+    
 }
 .recipeImage {
     width: 600px;
     border-radius: 25px;
 }
-
+.wrapper_time {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.time {
+    padding-bottom: 25px;
+}
 .wrapper_info {
-    height: 300px;
-    width: 600px;
-    margin: 25px 0;
-    background-color: rgba(69, 131, 15, 0.2);
+    width: 700px;
+    margin: 50px 0;
+    padding: 25px 15px;
+    background-color: rgba(61, 159, 126, 0.3);
+}
+
+.wrapper_brief {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+    padding-bottom: 25px;
+    border-bottom: 1px dashed black;
+}
+.health_title {
+    padding: 25px 0;
 }
 .health {
     display: grid;
@@ -24,9 +43,32 @@
     grid-row-gap: 0px;
 }
 
-.health li{
+.health li {
     cursor: pointer;
     font-size: 14px;
     border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+.ingredients_title{
+    padding: 0 0 25px 0;
+}
+.ingredients {
+    display: flex;
     
+   
+    
+    max-width: 600px;
+    align-items: center;
+    border-bottom: 1px dashed rgb(212, 212, 212);
+    padding: 15px 0;
+}
+
+.ingredients img {
+    border-radius: 50%;
+    width: 50px;
+    margin-right: 50px;
+}
+.instructions{
+    margin: 50px 0;
+    color: #000;
 }

@@ -1,8 +1,17 @@
 import React from "react";
 import style from "../css/Card.module.css";
+
 import { timeCalc } from "../helpers/Time";
 import { Link } from "react-router-dom";
-export default function Card({ image, label, totalTime, onClick }: any) {
+
+interface ICard {
+    image: string;
+    label: string;
+    totalTime: number;
+    onClick: () => void;
+}
+
+export default function Card({ image, label, totalTime, onClick }: ICard) {
     return (
         <Link to="/Recipe" className={style.wrapper} onClick={onClick}>
             <div className={style.wrapper_image}>

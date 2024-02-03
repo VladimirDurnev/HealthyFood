@@ -16,6 +16,7 @@
     padding: 20px 0 0 0;
     width: 260px;
     font-size: 16px;
+    color: black;
 }
 .wrapper_image {
     width: 280px;
@@ -45,6 +46,5 @@
     bottom: 15px;
     right: 10px;
     color: rgb(255, 255, 255);
-    background: rgba(0, 0, 0, 0);
     font-weight: 700;
 }

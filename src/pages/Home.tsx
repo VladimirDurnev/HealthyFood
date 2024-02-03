@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { fetchRandom } from "../Redux/homeSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
-
 import { selectHome } from "../Redux/homeSlice";
 import Category from "../Components/Category";
 import Card from "../Components/Card";
 import style from "../css/Home.module.css";
 import reboot from "../assets/reboot.png";
+
 export default function Home() {
     const dispatch = useAppDispatch();
-    const [rebootStatus, setRebootStatus] = useState(false);
-    const data = useAppSelector(selectHome);
+    const [rebootStatus, setRebootStatus] = useState<boolean>(false);
+    const { data } = useAppSelector(selectHome);
 
-    const hendleReboot = () => {
+    const hendleReboot = (): void => {
         setRebootStatus(true);
         setTimeout(() => setRebootStatus(false), 500);
     };
 
-    useEffect(() => {
+    useEffect((): void => {
         if (data.length === 0) {
             dispatch(fetchRandom());
         }
     }, [dispatch]);
+
     return (
         <div>
             <div className={style.info}>
