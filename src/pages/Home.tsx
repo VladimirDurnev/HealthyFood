@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchRandom } from "../Redux/homeSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
-import { setRecipe } from "../Redux/recipeSlice";
+
 import { selectHome } from "../Redux/homeSlice";
 import Category from "../Components/Category";
 import Card from "../Components/Card";
@@ -44,7 +44,7 @@ export default function Home() {
                             dispatch(fetchRandom());
                             hendleReboot();
                         }}
-                        className={rebootStatus && style.active}
+                        className={rebootStatus ? style.active : null}
                     >
                         <img src={reboot} alt="reboot"></img>
                     </button>
@@ -52,7 +52,12 @@ export default function Home() {
                 <div className={style.card_wrapper}>
                     {data.map((obj) => (
                         <Card
-                            onClick={() => dispatch(setRecipe({ ...obj }))}
+                            onClick={() =>
+                                localStorage.setItem(
+                                    "recipe",
+                                    JSON.stringify({ ...obj })
+                                )
+                            }
                             key={obj.image}
                             {...obj}
                         ></Card>

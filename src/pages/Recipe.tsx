@@ -1,50 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useAppSelector } from "../Redux/hooks";
+import React, { useEffect, useState } from "react";
 
-import { selectRecipe } from "../Redux/recipeSlice";
 import { timeCalc } from "../helpers/Time";
 import { caloriesCalc } from "../helpers/Calories";
 import style from "../css/Recipe.module.css";
 export default function Recipe() {
     const [rec, setRec] = useState<any>();
-  
-    const {
-        label,
-        image,
-        calories,
-        totalTime,
-        totalWeight,
-        ingredients,
-        healthLabels,
-    }: any = useAppSelector(selectRecipe);
 
     useEffect(() => {
         const recipeLocal: any = localStorage.getItem("recipe");
-        if (!recipeLocal) {
-            localStorage.setItem(
-                "recipe",
-                JSON.stringify({
-                    label,
-                    image,
-                    calories,
-                    totalTime,
-                    totalWeight,
-                    ingredients,
-                    healthLabels,
-                })
-            );
-            setRec({
-                label,
-                image,
-                calories,
-                totalTime,
-                totalWeight,
-                ingredients,
-                healthLabels,
-            });
-        } else {
-            setRec(JSON.parse(recipeLocal));
-        }
+        setRec(JSON.parse(recipeLocal));
     }, []);
 
     return (
