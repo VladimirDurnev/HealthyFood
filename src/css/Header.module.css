@@ -3,6 +3,8 @@
     padding: 20px 0;
     position: fixed;
     width: 100vw;
+    z-index: 2;
+    background-color: rgb(255, 250, 250);
 }
 .container {
     display: flex;
@@ -11,24 +13,18 @@
     width: 1200px;
     margin: auto;
 }
-.wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 250px;
-}
-.search{
+
+.search {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 300px;
 }
 
-.search input{
+.search input {
     padding: 15px;
     /* border: 1px solid rgb(184, 184, 184); */
     box-shadow: 5px 10px 5px rgb(236, 236, 236);
     border-radius: 15px;
     outline: none;
 }
-
