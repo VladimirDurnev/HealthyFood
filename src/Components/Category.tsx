@@ -5,16 +5,16 @@ export default function Category() {
     type typeCategory = { title: string; img: string };
     const category: typeCategory[] = [
         {
-            title: "Biscuit and coockies",
-            img: "http://klublady.ru/uploads/posts/2022-02/1644615698_7-klublady-ru-p-pechene-kukis-foto-8.jpg",
+            title: "Breakfast",
+            img: "https://i.pinimg.com/736x/c0/89/8f/c0898f479d9785afc4eca4ab1ae4dbef.jpg",
         },
         {
-            title: "Bread",
-            img: "https://i.pinimg.com/originals/70/ca/b3/70cab3de585787160d3af332a6446750.jpg",
+            title: "Brunch",
+            img: "https://i.pinimg.com/736x/42/c2/d0/42c2d0408286a6b4f0c464f884d51f74.jpg",
         },
         {
             title: "Lunch",
-            img: "https://www.fashiontime.ru/upload/iblock/e89/e8958f8ae27b32f4504efa2a3882ad64w500h500cr.jpg",
+            img: "https://mykaleidoscope.ru/x/uploads/posts/2022-09/thumbs/1663633626_23-mykaleidoscope-ru-p-biznes-lanch-yeda-vkontakte-28.jpg",
         },
         {
             title: "Snack",
@@ -22,13 +22,10 @@ export default function Category() {
         },
 
         {
-            title: "Soup",
-            img: "https://is3-ssl.mzstatic.com/image/thumb/Purple111/v4/90/e3/52/90e3525b-9d9c-20a1-deee-4cdac803160a/source/512x512bb.jpg",
+            title: "Teatime",
+            img: "https://sun9-42.userapi.com/impg/xT-QFHo6XWlJ2Q0rAZBb6Orq5gF8Mj5gJp8xTA/dUB8nYHrcsg.jpg?size=807x794&quality=96&sign=c417f4c64f6856671beec30151f5b83e&c_uniq_tag=KmJ6OioH94Qvig5MdZtBYYuPmisnthboum1VoGdNjKY&type=album",
         },
-        {
-            title: "Salad",
-            img: "https://i.pinimg.com/originals/1a/42/40/1a42407255bf2ea175a89ebd46225677.jpg",
-        },
+       
     ];
     return (
         <div className={style.wrapper_category}>
@@ -36,12 +33,14 @@ export default function Category() {
 
             <div className={style.wrapper}>
                 {category.map((item) => (
-                    <Link to={item.title} key={item.img}>
-                        <div className={style.wrapper_item}>
-                            <img src={item.img} alt="img"></img>
+                    <Link
+                        to={item.title}
+                        key={item.img}
+                        className={style.wrapper_item}
+                    >
+                        <img src={item.img} alt="img"></img>
 
-                            <p>{item.title}</p>
-                        </div>
+                        <h4>{item.title}</h4>
                     </Link>
                 ))}
             </div>
