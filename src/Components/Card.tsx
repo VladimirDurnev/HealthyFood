@@ -8,7 +8,7 @@ interface ICard {
     image: string;
     label: string;
     totalTime: number;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 export default function Card({ image, label, totalTime, onClick }: ICard) {

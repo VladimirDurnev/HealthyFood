@@ -50,7 +50,7 @@ export default function Home() {
                         <img src={reboot} alt="reboot"></img>
                     </button>
                 </div>
-                <div className={style.card_wrapper}>
+                <div className={style.card_wrapper}>    
                     {data.map((obj) => (
                         <Card
                             onClick={() =>
@@ -63,7 +63,7 @@ export default function Home() {
                             {...obj}
                         ></Card>
                     ))}
-                </div>
+                </div>  
             </div>
         </div>
     );
