@@ -18,13 +18,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
 }
 
 .search input {
     padding: 15px;
-    /* border: 1px solid rgb(184, 184, 184); */
     box-shadow: 5px 10px 5px rgb(236, 236, 236);
     border-radius: 15px;
     outline: none;
+    margin-right: 25px;
 }
