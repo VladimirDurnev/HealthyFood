@@ -1,0 +1,60 @@
+.wrapper {
+    padding: 200px 0 100px 0;
+}
+
+.wrapper_input {
+    position: relative;
+    box-shadow: 0px 0px 5px 8px rgba(200, 200, 200, 0.1),
+                0px 2px 4px rgba(200, 200, 200, 0.1), 
+                0px 4px 8px rgba(200, 200, 200, 0.1),
+                0px 8px 16px rgba(200, 200, 200, 0.1);
+    width: 100%;
+    border-radius: 50px;
+    padding: 25px 0px 25px 25px;
+    transition: 0.5s;
+    outline: none;
+    transition: 0.5s;
+    background-color: rgb(255, 255, 255);
+}
+.wrapper_input input {
+    outline: none;
+    width: 85%;
+    height: 100%;
+}
+.wrapper_input:hover {
+    box-shadow: 0px 0px 5px 8px rgba(100, 100, 100, 0.1),
+                0px 2px 4px rgba(100, 100, 100, 0.1), 
+                0px 4px 8px rgba(100, 100, 100, 0.1),
+                0px 8px 16px rgba(100, 100, 100, 0.1);
+}
+.clear {
+    position: absolute;
+    padding: 15px;
+    border-radius: 15px;
+    top: 10px;
+    right: 115px;
+    transition: 0.5s;
+}
+.clear:hover{
+    scale: 1.1;
+}
+.clear img {
+    width: 25px;
+    transition: 0.5s;
+}
+
+.search_button {
+    position: absolute;
+    background-color: rgba(61, 159, 126, 0.3);
+    padding: 15px;
+    border-radius: 15px;
+    top: 10px;
+    right: 25px;
+    transition: 0.5s;
+}
+.search_button:hover {
+    background-color: rgba(61, 159, 126, 0.5);
+}
+.wrapper_input input :hover {
+    box-shadow: 5px 15px 10px rgb(191, 191, 191);
+}

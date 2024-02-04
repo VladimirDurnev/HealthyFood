@@ -29,12 +29,12 @@ export default function Category() {
     ];
     return (
         <div className={style.wrapper_category}>
-            <h3 className={style.title}>Category: </h3>
+            <h3 className={style.title}>Pick Your Meal: </h3>
 
             <div className={style.wrapper}>
                 {category.map((item) => (
                     <Link
-                        to={item.title}
+                        to='Search'
                         key={item.img}
                         className={style.wrapper_item}
                     >

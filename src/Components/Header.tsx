@@ -8,14 +8,16 @@ const Header = () => {
     return (
         <header className={style.header_wrapper}>
             <div className={style.container}>
-                <Link to="/" >
+                <Link to="/">
                     <img className={style.logo} src={logo} alt="" />
                 </Link>
                 <div className={style.search}>
                     <input type="text" placeholder="Поиск" />
-                    <button>
-                        <img src={search} alt="" />
-                    </button>
+                    <Link to='Search'>
+                        <button>
+                            <img src={search} alt="" />
+                        </button>
+                    </Link>
                 </div>
             </div>
         </header>
