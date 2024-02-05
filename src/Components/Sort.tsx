@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../Redux/hooks";
-
+import { useAppDispatch, useAppSelector } from "../Redux/hooks";
+import { selectSearch } from "../Redux/searchSlice";
 interface ISort {
     title: string;
     value?: string;
@@ -18,12 +18,16 @@ export default function Sort({
 }: ISort) {
     const dispatch = useAppDispatch();
     const [addStatus, setAddStatus] = useState(true);
-    const ref = useRef<HTMLInputElement>(null);
+    const radioRef = useRef<HTMLInputElement>(null);
+    const checkboxRef = useRef<HTMLInputElement>(null);
+    const { mealType } = useAppSelector(selectSearch);
     const testClick = () => {
         setAddStatus((prev) => !prev);
-        if (!addStatus && ref.current) {
-            ref.current.checked = false; 
+        if (!addStatus && radioRef.current) {
+            radioRef.current.checked = false;
         }
+       
+
         addStatus ? addItem && addItem() : deleteItem && deleteItem();
     };
 
@@ -32,7 +36,7 @@ export default function Sort({
             <input
                 type={typeInput ? typeInput : "checkbox"}
                 name="myInput"
-                ref={ref}
+                ref={typeInput ? radioRef : checkboxRef}
                 value={title[0].toUpperCase() + title.slice(1)}
                 onClick={() => {
                     testClick();
