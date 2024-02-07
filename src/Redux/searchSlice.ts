@@ -9,18 +9,20 @@ export const fetchSearch = createAsyncThunk(
     async ({
         mealType,
         searchInput,
-        time
+        dishType,
+        time,
     }: {
         mealType: string[];
         searchInput: string;
-        time?: string
+        dishType: string[];
+        time?: string;
     }) => {
         const { data } = await axios.get(
             `https://api.edamam.com/api/recipes/v2?type=public${
                 "&q=" + searchInput
-            }&app_id=f5c340d8&app_key=fba58c05fd7410ca5bc1cd6cc3825eac&calories=0-150&health=alcohol-free&imageSize=LARGE&excluded=drinks${time ? '&time=' + time : '&time=5%2B'}${mealType.join(
-                ""
-            )}`
+            }&app_id=f5c340d8&app_key=fba58c05fd7410ca5bc1cd6cc3825eac&calories=0-150&health=alcohol-free&imageSize=LARGE&excluded=drinks${
+                time ? "&time=" + time : "&time=5%2B"
+            }${mealType.join("")}${dishType.join("")}`
         );
         return data.hits.map(({ recipe }: any) => recipe) as RecipeType[];
     }
@@ -29,39 +31,64 @@ export const fetchSearch = createAsyncThunk(
 interface ISearch {
     data: RecipeType[];
     mealType: string[];
+    dishType: string[];
+    diet: string[];
     time: string;
     searchInput: string;
+    clearStatus: boolean;
     status: Status;
+    [key: string]: any;
 }
 
 const initialState: ISearch = {
     data: [],
     mealType: [],
+    dishType: [],
+    diet: [],
     time: "",
     searchInput: "",
-    status: Status.FULFILLED,
+    clearStatus: false,
+    status: Status.PENDING,
 };
 
 const searchSlice = createSlice({
     name: "search",
     initialState,
     reducers: {
-        setMealType: (state, action: PayloadAction<string>) => {
-            state.mealType.push("&mealType=" + action.payload);
-            console.log("add: " + state.mealType);
+        updateArray: (
+            state,
+            action: PayloadAction<{
+                key: string;
+                value: string;
+                operation: "add" | "remove";
+            }>
+        ) => {
+            const { key, value, operation } = action.payload;
+
+            if (operation === "add") {
+                state[key] = [...state[key], `&${key}=${value.toLowerCase()}`];
+            } else if (operation === "remove") {
+                state[key] = state[key].filter(
+                    (item: string) => item !== `&${key}=${value.toLowerCase()}`
+                );
+            }
         },
-        daleteItemMealType: (state, action: PayloadAction<string>) => {
-            state.mealType = state.mealType.filter(
-                (item) => item !== "&mealType=" + action.payload
-            );
-            console.log("delete: " + state.mealType);
-        },
+
         setSearchInput: (state, action: PayloadAction<string>) => {
             state.searchInput = action.payload;
         },
         setTime: (state, action: PayloadAction<string>) => {
-            state.time = action.payload
-        }
+            state.time = action.payload;
+        },
+        clearAll: (state) => {
+            state.mealType = [];
+            state.searchInput = "";
+            state.time = "";
+            state.clearStatus = true;
+        },
+        setClearStatus: (state, action: PayloadAction<boolean>) => {
+            state.clearStatus = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchSearch.pending, (state) => {
@@ -79,8 +106,13 @@ const searchSlice = createSlice({
         });
     },
 });
-export const { setMealType, daleteItemMealType, setSearchInput, setTime } =
-    searchSlice.actions;
+export const {
+    setSearchInput,
+    setTime,
+    clearAll,
+    setClearStatus,
+    updateArray,
+} = searchSlice.actions;
 export const selectSearch = (state: RootState) => state.searchSlice;
 
 export default searchSlice.reducer;

@@ -79,3 +79,12 @@ aside {
 .radio_wrapper {
     display: grid;
 }
+
+.notFound{
+    text-align: center;
+    margin: auto;
+}
+
+.notFound h4{
+    margin-bottom: 25px;
+}

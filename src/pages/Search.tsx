@@ -1,38 +1,26 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react";
 import style from "../css/Search.module.css";
 import Card from "../Components/Card";
 import close from "../assets/close.png";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import {
+    clearAll,
     fetchSearch,
     selectSearch,
     setSearchInput,
 } from "../Redux/searchSlice";
-import Sort from "../Components/Sort";
-import { mealTypeArry, timeArry } from "../static/StaticData";
-import { setMealType, daleteItemMealType, setTime } from "../Redux/searchSlice";
-import { debounce } from "lodash";
+
+import { Status } from "../type/StatusEnum";
+import SortBlock from "../Components/SortBlock";
+import { SortBlockArray } from "../static/StaticData";
 export default function Search() {
     const dispatch = useAppDispatch();
-    const { data, mealType, searchInput, time } = useAppSelector(selectSearch);
+    const { data, mealType, searchInput, dishType, time, status } =
+        useAppSelector(selectSearch);
 
     useEffect(() => {
-        dispatch(fetchSearch({ mealType, searchInput, time }));
-    }, [mealType, time]);
-
-    const hendleTime = debounce((value) => {
-        value && dispatch(setTime(value));
-    }, 300);
-    const clearTime = debounce((value) => {
-        value && dispatch(setTime(""));
-    }, 300);
-
-    const hendleMealType = debounce((title) => {
-        dispatch(setMealType(title));
-    }, 300);
-    const clearMealType = debounce((title) => {
-        dispatch(daleteItemMealType(title));
-    }, 300);
+        dispatch(fetchSearch({ mealType, searchInput, dishType, time }));
+    }, [mealType, dishType, time]);
 
     return (
         <div className={style.wrapper}>
@@ -55,7 +43,7 @@ export default function Search() {
                 )}
                 <button
                     onClick={() =>
-                        dispatch(fetchSearch({ mealType, searchInput }))
+                        dispatch(fetchSearch({ mealType, dishType, searchInput }))
                     }
                     className={style.search_button}
                 >
@@ -63,36 +51,33 @@ export default function Search() {
                 </button>
             </div>
             <div className={style.wrapper_search}>
-                <aside>
-                    <h4>Time</h4>
-                    <div className={style.radio_wrapper}>
-                        {timeArry.map((item) => (
-                            <Sort
-                                addItem={() => hendleTime(item.value)}
-                                deleteItem={() => clearTime(item.value)}
-                                typeInput='radio'
-                                title={item.title}
-                                value={item.value}
-                            />
-                        ))}
-                    </div>
-                    <h4>Meal type</h4>
-                    <div className={style.radio_wrapper}>
-                        {mealTypeArry.map((item) => (
-                            <Sort
-                                addItem={() => hendleMealType(item)}
-                                deleteItem={() => clearMealType(item)}
-                                title={item}
-                            />
-                        ))}
-                    </div>
-                </aside>
-
-                <div className={style.wrapper_card}>
-                    {data.map((obj) => (
-                        <Card {...obj}></Card>
+                <aside className={style.aside}>
+                    {SortBlockArray.map((item) => (
+                        <SortBlock
+                            key={item.title}
+                            nameBlock={item.title}
+                            sortArray={item.array}
+                            typeInput={item.typeInput}
+                        ></SortBlock>
                     ))}
-                </div>
+                </aside>
+                {status === Status.PENDING ? (
+                    <>LOADING</>
+                ) : data.length > 0 && Status.FULFILLED ? (
+                    <div className={style.wrapper_card}>
+                        {data.map((obj) => (
+                            <Card {...obj}></Card>
+                        ))}
+                    </div>
+                ) : (
+                    <div className={style.notFound}>
+                        <h4>We don't find anything matching your search.</h4>
+                        <p>Try removing filters or changing your keyword.</p>
+                        <button onClick={() => dispatch(clearAll())}>
+                            Reset search
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

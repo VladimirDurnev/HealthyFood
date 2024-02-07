@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import style from "../css/Header.module.css";
@@ -11,9 +10,8 @@ import { fetchSearch } from "../Redux/searchSlice";
 
 const Header = () => {
     const dispatch = useAppDispatch();
-    const { searchInput, mealType } = useAppSelector(selectSearch);
+    const { searchInput, mealType, dishType } = useAppSelector(selectSearch);
     const { pathname } = useLocation();
-
     return (
         <header className={style.header_wrapper}>
             <div className={style.container}>
@@ -34,7 +32,7 @@ const Header = () => {
                     <Link to="Search">
                         <button
                             onClick={() =>
-                                dispatch(fetchSearch({ mealType, searchInput }))
+                                dispatch(fetchSearch({ mealType, dishType, searchInput }))
                             }
                         >
                             <img src={search} alt="" />
