@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../css/SortBlock.module.css";
-import { useAppDispatch } from "../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import Sort from "./SortItem";
 import { mealTypeArray, timeArray, dishTypeArray } from "../static/StaticData";
-import { setTime, updateArray } from "../Redux/searchSlice";
+import { selectSearch, setTime, updateArray } from "../Redux/searchSlice";
 import { debounce } from "lodash";
 
 const handleSortItem = debounce(
@@ -25,24 +25,34 @@ const clearSortItem = debounce(
     300
 );
 
-export default function SortBlock({
-    nameBlock,
-    sortArray,
-    typeInput,
-}: {
+interface ISortBlock {
     nameBlock: string;
     sortArray: { title: string; value?: string }[];
     typeInput?: string;
-}) {
-    const dispatch = useAppDispatch();
-    const [test, setTest] = useState(false);
+}
 
-    sortArray.forEach((item) => item.value);
+const SortBlock: React.FC<ISortBlock> = ({
+    nameBlock,
+    sortArray,
+    typeInput,
+}) => {
+    const dispatch = useAppDispatch();
+    const [openBlock, setOpenBlock] = useState(false);
+    const { mealType } = useAppSelector(selectSearch);
+    useEffect(() => {
+        sortArray === mealTypeArray && mealType && setOpenBlock(!openBlock);
+    }, []);
+
     return (
         <>
-            <h4 onClick={() => setTest((prev) => !prev)}>{nameBlock}</h4>
+            <div>
+                <h4 onClick={() => setOpenBlock((prev) => !prev)}>
+                    {nameBlock}
+                </h4>
+                <img src="" alt="" />
+            </div>
             <div className={style.SortBlock}>
-                {test &&
+                {openBlock &&
                     sortArray.map((item) =>
                         sortArray === timeArray ? (
                             <Sort
@@ -109,4 +119,6 @@ export default function SortBlock({
             </div>
         </>
     );
-}
+};
+
+export default SortBlock

@@ -17,11 +17,11 @@ export default function Search() {
     const dispatch = useAppDispatch();
     const { data, mealType, searchInput, dishType, time, status } =
         useAppSelector(selectSearch);
-
+   
     useEffect(() => {
         dispatch(fetchSearch({ mealType, searchInput, dishType, time }));
     }, [mealType, dishType, time]);
-
+   
     return (
         <div className={style.wrapper}>
             <div className={style.wrapper_input}>

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { setClearStatus } from "../Redux/searchSlice";
 import { selectSearch } from "../Redux/searchSlice";
 import style from "../css/Sort.module.css";
+
 interface ISort {
     title: string;
     value?: string;
@@ -11,13 +12,7 @@ interface ISort {
     deleteItem?: () => void;
 }
 
-export default function Sort({
-    title,
-
-    typeInput,
-    addItem,
-    deleteItem,
-}: ISort) {
+const Sort: React.FC<ISort> = ({ title, typeInput, addItem, deleteItem }) => {
     const { mealType, clearStatus } = useAppSelector(selectSearch);
 
     const [addStatus, setAddStatus] = useState(true);
@@ -69,4 +64,5 @@ export default function Sort({
             {title[0].toUpperCase() + title.slice(1)}
         </label>
     );
-}
+};
+export default Sort;

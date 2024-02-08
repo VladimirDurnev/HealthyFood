@@ -7,16 +7,17 @@ import Card from "../Components/Card";
 import style from "../css/Home.module.css";
 import reboot from "../assets/reboot.png";
 
+
 export default function Home() {
     const dispatch = useAppDispatch();
     const [rebootStatus, setRebootStatus] = useState<boolean>(false);
     const { data } = useAppSelector(selectHome);
-
+    
     const hendleReboot = (): void => {
         setRebootStatus(true);
         setTimeout(() => setRebootStatus(false), 500);
     };
-
+   
     useEffect((): void => {
         if (data.length === 0) {
             dispatch(fetchRandom());
@@ -50,7 +51,7 @@ export default function Home() {
                         <img src={reboot} alt="reboot"></img>
                     </button>
                 </div>
-                <div className={style.card_wrapper}>    
+                <div className={style.card_wrapper}>
                     {data.map((obj) => (
                         <Card
                             onClick={() =>
@@ -63,7 +64,7 @@ export default function Home() {
                             {...obj}
                         ></Card>
                     ))}
-                </div>  
+                </div>
             </div>
         </div>
     );
