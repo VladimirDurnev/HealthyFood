@@ -40,6 +40,7 @@ export default function Search() {
                 cuisineType,
             })
         );
+        window.scrollTo(0, 0);
     }, [mealType, dishType, time, diet, cuisineType]);
 
     return (
@@ -94,20 +95,26 @@ export default function Search() {
                 {status === Status.PENDING ? (
                     <div className={style.wrapper_card}>
                         {[...new Array(21)].map(() => (
-                            <Skeleton ></Skeleton>
+                            <Skeleton></Skeleton>
                         ))}
                     </div>
-                    // <h1>Загрузка</h1>
-                        
                 ) : data.length > 0 && Status.FULFILLED ? (
                     <div>
                         <div className={style.wrapper_card}>
-                            
                             {data.map((obj) => (
-                                <Card key={obj.label} {...obj}></Card>
+                                <Card
+                                    onClick={() =>
+                                        localStorage.setItem(
+                                            "recipe",
+                                            JSON.stringify({ ...obj })
+                                        )
+                                    }
+                                    key={obj.label}
+                                    {...obj}
+                                ></Card>
                             ))}
                             <button
-                                onClick={() =>
+                                onClick={() => {
                                     dispatch(
                                         fetchSearch({
                                             mealType,
@@ -118,13 +125,14 @@ export default function Search() {
                                             cuisineType,
                                             _cont,
                                         })
-                                    )
-                                }
+                                    );
+                                    window.scrollTo(0, 0);
+                                }}
                             >
                                 NEXT PAGE
                             </button>
                             <button
-                                onClick={() =>
+                                onClick={() => {
                                     dispatch(
                                         fetchSearch({
                                             mealType,
@@ -134,8 +142,9 @@ export default function Search() {
                                             diet,
                                             cuisineType,
                                         })
-                                    )
-                                }
+                                    );
+                                    window.scrollTo(0, 0);
+                                }}
                             >
                                 Go back to the beginning
                             </button>

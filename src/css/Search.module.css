@@ -96,3 +96,9 @@ aside {
 .notFound h4{
     margin-bottom: 25px;
 }
+.notFound button{
+    background-color: rgba(61, 159, 126, 0.3);
+    padding: 15px;
+    border-radius: 25px;
+    margin-top: 25px;
+}
