@@ -65,7 +65,15 @@
     grid-column-gap: 25px;
     grid-row-gap: 25px;
 }
-
+.wrapper_card button {
+    background-color: rgba(61, 159, 126, 0.3);
+    border-radius: 25px;
+    transition: 0.5s;
+}
+.wrapper_card button:hover{
+    background-color: rgba(61, 159, 126, 0.5);
+    border-radius: 25px;
+}
 .wrapper_search {
     display: flex;
     margin-top: 50px;

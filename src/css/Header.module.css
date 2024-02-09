@@ -6,6 +6,15 @@
     z-index: 2;
     background-color: rgb(255, 250, 250);
 }
+.header_wrapper_small{
+    box-shadow: 10px 5px 5px rgb(236, 236, 236);
+    padding: 10px 0;
+    position: fixed;
+    width: 100vw;
+    z-index: 2;
+    background-color: rgb(255, 250, 250);
+}
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -13,7 +22,9 @@
     width: 1200px;
     margin: auto;
 }
-
+.logo{
+    height: 50px;
+}
 .search {
     display: flex;
     justify-content: space-between;
@@ -26,4 +37,7 @@
     border-radius: 15px;
     outline: none;
     margin-right: 25px;
+}
+.search_button{
+    height: 25px;
 }
