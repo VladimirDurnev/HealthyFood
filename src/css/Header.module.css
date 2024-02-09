@@ -22,8 +22,22 @@
     width: 1200px;
     margin: auto;
 }
-.logo{
+.logo_wrapper{
+    display: flex;
+    align-items: center;
+}
+.logo_small{
     height: 50px;
+
+}
+.logo_title{
+    color: rgba(61, 159, 126, 1);
+    margin-left: 25px;
+}
+.logo_title_small{
+    color: rgba(61, 159, 126, 1);
+    font-size: 25px;
+    margin-left: 15px;
 }
 .search {
     display: flex;

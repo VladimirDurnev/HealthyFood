@@ -18,8 +18,9 @@ const Header = () => {
     return (
         <header className={statusHeader === "big" ? style.header_wrapper : style.header_wrapper_small}>
             <div className={style.container}>
-                <Link to="/">
-                    <img className={statusHeader === "small" && style.logo} src={logo} alt="" />
+                <Link className={style.logo_wrapper} to="/">
+                    <img className={statusHeader === "small" ? style.logo_small : style.logo} src={logo} alt="" />
+                    <h3 className={statusHeader === "small" ? style.logo_title_small : style.logo_title}>HealthyFood</h3>
                 </Link>
                 <div className={style.search}>
                     {statusHeader === "small" || pathname !== "/Search" && (
