@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "../css/Search.module.css";
 import Card from "../Components/Card";
 import close from "../assets/close.png";
@@ -13,15 +13,35 @@ import {
 import { Status } from "../type/StatusEnum";
 import SortBlock from "../Components/SortBlock";
 import { SortBlockArray } from "../static/StaticData";
+import Skeleton from "../Components/Skeleton";
+
 export default function Search() {
     const dispatch = useAppDispatch();
-    const { data, mealType, searchInput, dishType, time, status } =
-        useAppSelector(selectSearch);
-   
+    const {
+        data,
+        mealType,
+        searchInput,
+        dishType,
+        time,
+        status,
+        diet,
+        cuisineType,
+        _cont,
+    } = useAppSelector(selectSearch);
+
     useEffect(() => {
-        dispatch(fetchSearch({ mealType, searchInput, dishType, time }));
-    }, [mealType, dishType, time]);
-   
+        dispatch(
+            fetchSearch({
+                mealType,
+                searchInput,
+                dishType,
+                time,
+                diet,
+                cuisineType,
+            })
+        );
+    }, [mealType, dishType, time, diet, cuisineType]);
+
     return (
         <div className={style.wrapper}>
             <div className={style.wrapper_input}>
@@ -43,13 +63,22 @@ export default function Search() {
                 )}
                 <button
                     onClick={() =>
-                        dispatch(fetchSearch({ mealType, dishType, searchInput }))
+                        dispatch(
+                            fetchSearch({
+                                mealType,
+                                dishType,
+                                searchInput,
+                                diet,
+                                cuisineType,
+                            })
+                        )
                     }
                     className={style.search_button}
                 >
                     Search
                 </button>
             </div>
+
             <div className={style.wrapper_search}>
                 <aside className={style.aside}>
                     {SortBlockArray.map((item) => (
@@ -61,13 +90,56 @@ export default function Search() {
                         ></SortBlock>
                     ))}
                 </aside>
+
                 {status === Status.PENDING ? (
-                    <>LOADING</>
-                ) : data.length > 0 && Status.FULFILLED ? (
                     <div className={style.wrapper_card}>
-                        {data.map((obj) => (
-                            <Card {...obj}></Card>
+                        {[...new Array(21)].map(() => (
+                            <Skeleton ></Skeleton>
                         ))}
+                    </div>
+                    // <h1>Загрузка</h1>
+                        
+                ) : data.length > 0 && Status.FULFILLED ? (
+                    <div>
+                        <div className={style.wrapper_card}>
+                            
+                            {data.map((obj) => (
+                                <Card key={obj.label} {...obj}></Card>
+                            ))}
+                            <button
+                                onClick={() =>
+                                    dispatch(
+                                        fetchSearch({
+                                            mealType,
+                                            searchInput,
+                                            dishType,
+                                            time,
+                                            diet,
+                                            cuisineType,
+                                            _cont,
+                                        })
+                                    )
+                                }
+                            >
+                                NEXT PAGE
+                            </button>
+                            <button
+                                onClick={() =>
+                                    dispatch(
+                                        fetchSearch({
+                                            mealType,
+                                            searchInput,
+                                            dishType,
+                                            time,
+                                            diet,
+                                            cuisineType,
+                                        })
+                                    )
+                                }
+                            >
+                                Go back to the beginning
+                            </button>
+                        </div>
                     </div>
                 ) : (
                     <div className={style.notFound}>

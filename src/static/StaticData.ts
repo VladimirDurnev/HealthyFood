@@ -59,8 +59,45 @@ export const dishTypeArray: { title: string }[] = [
     { title: "sweets" },
 ];
 
+export const dietArray: { title: string }[] = [
+    { title: "balanced" },
+    { title: "high-fiber" },
+    { title: "high-protein" },
+    { title: "low-carb" },
+    { title: "low-fat" },
+    { title: "low-sodium" },
+];
+export const cuisineTypeArray: { title: string }[] = [
+    { title: "american" },
+    { title: "asian" },
+    { title: "british" },
+    { title: "caribbean" },
+    { title: "central europe" },
+    { title: "chinese" },
+
+    { title: "eastern europe" },
+    { title: "french" },
+    { title: "greek" },
+    { title: "indian" },
+    { title: "italian" },
+    { title: "japanese  " },
+
+    { title: "korean" },
+    { title: "kosher" },
+    { title: "mediterranean" },
+    { title: "mexican" },
+    { title: "middle eastern" },
+    { title: "nordic  " },
+    
+    { title: "south american" },
+    { title: "south east asian" },
+    { title: "world" },
+  
+];
 export const SortBlockArray = [
     { title: "Time", array: timeArray, typeInput: "radio" },
     { title: "Meal Type", array: mealTypeArray },
     { title: "Dish Type", array: dishTypeArray },
+    { title: "Diet", array: dietArray },
+    { title: "Cuisine Type", array: cuisineTypeArray },
 ];

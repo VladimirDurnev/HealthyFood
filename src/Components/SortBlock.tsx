@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import style from "../css/SortBlock.module.css";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import Sort from "./SortItem";
-import { mealTypeArray, timeArray, dishTypeArray } from "../static/StaticData";
+import { mealTypeArray, timeArray, dishTypeArray, dietArray, cuisineTypeArray } from "../static/StaticData";
 import { selectSearch, setTime, updateArray } from "../Redux/searchSlice";
 import { debounce } from "lodash";
 
 const handleSortItem = debounce(
     (key: string, title: string | undefined, dispatch, action) => {
+       
         action === updateArray
             ? dispatch(action({ key: key, value: title, operation: "add" }))
             : dispatch(action(title));
@@ -40,7 +41,7 @@ const SortBlock: React.FC<ISortBlock> = ({
     const [openBlock, setOpenBlock] = useState(false);
     const { mealType } = useAppSelector(selectSearch);
     useEffect(() => {
-        sortArray === mealTypeArray && mealType && setOpenBlock(!openBlock);
+        sortArray === mealTypeArray && mealType.length > 0 && setOpenBlock(!openBlock);
     }, []);
 
     return (
@@ -110,9 +111,51 @@ const SortBlock: React.FC<ISortBlock> = ({
                                     )
                                 }
                                 typeInput={typeInput}
+                                title={item.title}
+                            />
+                        ) :  sortArray === dietArray ? (
+                            <Sort
+                                addItem={() =>
+                                    handleSortItem(
+                                        "diet",
+                                        item.title,
+                                        dispatch,
+                                        updateArray
+                                    )
+                                }
+                                deleteItem={() =>
+                                    clearSortItem(
+                                        "diet",
+                                        dispatch,
+                                        updateArray,
+                                        item.title
+                                    )
+                                }
+                                typeInput={typeInput}
                                 title={item?.title}
                             />
-                        ) : (
+                        ) :  sortArray === cuisineTypeArray ? (
+                            <Sort
+                                addItem={() =>
+                                    handleSortItem(
+                                        "cuisineType",
+                                        item.title,
+                                        dispatch,
+                                        updateArray
+                                    )
+                                }
+                                deleteItem={() =>
+                                    clearSortItem(
+                                        "cuisineType",
+                                        dispatch,
+                                        updateArray,
+                                        item.title
+                                    )
+                                }
+                                typeInput={typeInput}
+                                title={item?.title}
+                            />
+                        ):  (
                             <></>
                         )
                     )}
