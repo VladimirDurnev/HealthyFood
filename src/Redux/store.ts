@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import homeSlice from "./homeSlice";
 import searchSlice from './searchSlice'
-
+import recipesByCategorySlice from './recipesByCategorySlice'
 export const store = configureStore({
     reducer: {
         homeSlice,
-        searchSlice
+        searchSlice,
+        recipesByCategorySlice
     },
 });
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import type { RecipeType } from "../type/RecipeType";
 import { Status } from "../type/StatusEnum";
 import { RootState } from "./store";
+import { app_id, app_key } from "../static/StaticData";
 
 export const fetchSearch = createAsyncThunk(
     "data/fetchSearch",
@@ -26,7 +27,7 @@ export const fetchSearch = createAsyncThunk(
         const { data } = await axios.get(
             `https://api.edamam.com/api/recipes/v2?type=public${
                 "&q=" + searchInput
-            }&app_id=f5c340d8&app_key=fba58c05fd7410ca5bc1cd6cc3825eac${
+            }&app_id=${app_id}&app_key=${app_key}${
                 "&" + _cont
             }&calories=0-150&health=alcohol-free&imageSize=LARGE&excluded=drinks${
                 time ? "&time=" + time : "&time=5%2B"

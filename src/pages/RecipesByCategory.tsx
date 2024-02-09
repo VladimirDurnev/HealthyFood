@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "../css/RecipesByCategory.module.css";
 import { Status } from "../type/StatusEnum";
 import Skeleton from "../Components/Skeleton";
 import Card from "../Components/Card";
-import { useAppSelector } from "../Redux/hooks";
-import { selectHome } from "../Redux/homeSlice";
+import { useAppDispatch, useAppSelector } from "../Redux/hooks";
+import { selectHome, fetchRandom } from "../Redux/homeSlice";
+import {
+    fetchRecipesByCategory,
+    selectRecipesByCategory,
+} from "../Redux/recipesByCategorySlice";
 export default function RecipesByCategory() {
-    const { data, status } = useAppSelector(selectHome);
+    const { data, status } = useAppSelector(selectRecipesByCategory);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
-        <div className={style.wrapper}>
+        <div  className={style.wrapper}>
             <div className={style.wrapper_main_img}>
                 <div className={style.overlay}>
                     <img

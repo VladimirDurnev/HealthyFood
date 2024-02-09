@@ -16,7 +16,6 @@
 .main_img {
     width: 99vw;
     opacity: 0.6;
-    
 }
 
 .title {
@@ -25,7 +24,7 @@
     left: 800px;
     color: rgba(255, 250, 250);
 }
-.card_wrapper{
+.card_wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;

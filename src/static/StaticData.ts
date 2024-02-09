@@ -1,3 +1,6 @@
+export const app_id: string = '25cecd98'
+export const app_key: string = 'f28673616f7f783021af59d95ab02565'
+
 export const timeArray: { title: string; value?: string }[] = [
     { title: "Under 15 Min", value: "5-15" },
     { title: "Under 30 Min", value: "5-30" },
