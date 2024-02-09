@@ -10,21 +10,32 @@ export const fetchSearch = createAsyncThunk(
         mealType,
         searchInput,
         dishType,
+        cuisineType,
+        diet,
         time,
+        _cont,
     }: {
         mealType: string[];
         searchInput: string;
         dishType: string[];
+        cuisineType: string[];
+        diet: string[];
         time?: string;
+        _cont?: string;
     }) => {
         const { data } = await axios.get(
             `https://api.edamam.com/api/recipes/v2?type=public${
                 "&q=" + searchInput
-            }&app_id=f5c340d8&app_key=fba58c05fd7410ca5bc1cd6cc3825eac&calories=0-150&health=alcohol-free&imageSize=LARGE&excluded=drinks${
+            }&app_id=f5c340d8&app_key=fba58c05fd7410ca5bc1cd6cc3825eac${
+                "&" + _cont
+            }&calories=0-150&health=alcohol-free&imageSize=LARGE&excluded=drinks${
                 time ? "&time=" + time : "&time=5%2B"
-            }${mealType.join("")}${dishType.join("")}`
+            }${mealType.join("")}${dishType.join("")}${diet.join(
+                ""
+            )}${cuisineType.join("")}`
         );
-        return data.hits.map(({ recipe }: any) => recipe) as RecipeType[];
+
+        return data;
     }
 );
 
@@ -32,11 +43,13 @@ interface ISearch {
     data: RecipeType[];
     mealType: string[];
     dishType: string[];
+    cuisineType: string[];
     diet: string[];
     time: string;
     searchInput: string;
     clearStatus: boolean;
     status: Status;
+    _cont: string;
     [key: string]: any;
 }
 
@@ -44,11 +57,13 @@ const initialState: ISearch = {
     data: [],
     mealType: [],
     dishType: [],
+    cuisineType: [],
     diet: [],
     time: "",
     searchInput: "",
     clearStatus: false,
     status: Status.PENDING,
+    _cont: "",
 };
 
 const searchSlice = createSlice({
@@ -96,9 +111,21 @@ const searchSlice = createSlice({
         });
         builder.addCase(
             fetchSearch.fulfilled,
-            (state, action: PayloadAction<RecipeType[]>) => {
-                state.data = action.payload;
+            (
+                state,
+                action: PayloadAction<{
+                    hits: RecipeType[];
+                    _links: { next: { href: string } };
+                }>
+            ) => {
+                state.data = action.payload.hits.map(
+                    ({ recipe }: any) => recipe
+                ) as RecipeType[];
                 state.status = Status.FULFILLED;
+                state._cont = action.payload._links.next.href.slice(
+                    action.payload._links.next.href.indexOf("_cont"),
+                    action.payload._links.next.href.indexOf("&health")
+                );
             }
         );
         builder.addCase(fetchSearch.rejected, (state) => {

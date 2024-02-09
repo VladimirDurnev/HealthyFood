@@ -13,18 +13,24 @@ export const fetchRandom = createAsyncThunk("data/fetchRandom", async () => {
 
 interface IHome {
     data: RecipeType[];
+    statusHeader: 'big' | 'small'
     status: Status;
 }
 
 const initialState: IHome = {
     data: [],
+    statusHeader: 'big',
     status: Status.PENDING,
 };
 
 export const homeSlice = createSlice({
     name: "home",
     initialState,
-    reducers: {},
+    reducers: {
+        setStatusHeader: (state, action: PayloadAction<'big' | 'small'>) => {
+            state.statusHeader = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchRandom.pending, (state) => {
             state.status = Status.PENDING;
@@ -39,9 +45,10 @@ export const homeSlice = createSlice({
         builder.addCase(fetchRandom.rejected, (state) => {
             state.status = Status.REJECTED;
         });
+        
     },
 });
-
+export const {setStatusHeader} = homeSlice.actions
 export const selectHome = (state: RootState) => state.homeSlice;
 
 export default homeSlice.reducer;
