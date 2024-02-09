@@ -1,0 +1,13 @@
+
+aside {
+    width: 280px;
+    margin-right: 25px;
+}
+.SortBlock{
+    display: grid;
+    transition: .5s;
+}
+
+.SortBlock h4{
+   margin-bottom: 20px;
+}
