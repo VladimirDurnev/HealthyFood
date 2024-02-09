@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { fetchRandom } from "../Redux/homeSlice";
+import { fetchRandom, setStatusHeader } from "../Redux/homeSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { selectHome } from "../Redux/homeSlice";
 import Category from "../Components/Category";
 import Card from "../Components/Card";
 import style from "../css/Home.module.css";
 import reboot from "../assets/reboot.png";
+import { Status } from "../type/StatusEnum";
+import Skeleton from "../Components/Skeleton";
 
 export default function Home() {
     const dispatch = useAppDispatch();
     const [rebootStatus, setRebootStatus] = useState<boolean>(false);
-    const { data } = useAppSelector(selectHome);
-
+    const { data, status } = useAppSelector(selectHome);
+    
     const hendleReboot = (): void => {
         setRebootStatus(true);
         setTimeout(() => setRebootStatus(false), 500);
@@ -50,20 +52,31 @@ export default function Home() {
                         <img src={reboot} alt="reboot"></img>
                     </button>
                 </div>
-                <div className={style.card_wrapper}>
-                    {data.map((obj) => (
-                        <Card
-                            onClick={() =>
-                                localStorage.setItem(
-                                    "recipe",
-                                    JSON.stringify({ ...obj })
-                                )
-                            }
-                            key={obj.image}
-                            {...obj}
-                        ></Card>
-                    ))}
-                </div>
+
+                {status === Status.PENDING ? (
+                    <div className={style.card_wrapper}>
+                        {[...new Array(21)].map(() => (
+                            <Skeleton />
+                        ))}
+                    </div>
+                ) : status === Status.FULFILLED && data.length > 0 ? (
+                    <div className={style.card_wrapper}>
+                        {data.map((obj) => (
+                            <Card
+                                onClick={() =>
+                                    localStorage.setItem(
+                                        "recipe",
+                                        JSON.stringify({ ...obj })
+                                    )
+                                }
+                                key={obj.image}
+                                {...obj}
+                            ></Card>
+                        ))}
+                    </div>
+                ) : (
+                    <h1>Nothing was found, try updating the data</h1>
+                )}
             </div>
         </div>
     );

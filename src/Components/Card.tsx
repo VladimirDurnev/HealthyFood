@@ -8,10 +8,10 @@ interface ICard {
     image: string;
     label: string;
     totalTime: number;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
-export default function Card({ image, label, totalTime, onClick }: ICard) {
+const Card: React.FC<ICard> = ({ image, label, totalTime, onClick }) => {
     return (
         <Link to="/Recipe" className={style.wrapper} onClick={onClick}>
             <div className={style.wrapper_image}>
@@ -25,4 +25,5 @@ export default function Card({ image, label, totalTime, onClick }: ICard) {
             </p>
         </Link>
     );
-}
+};
+export default Card;
