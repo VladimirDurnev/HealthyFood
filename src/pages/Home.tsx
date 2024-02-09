@@ -55,7 +55,7 @@ export default function Home() {
 
                 {status === Status.PENDING ? (
                     <div className={style.card_wrapper}>
-                        {[...new Array(21)].map(() => (
+                        {[...new Array(20)].map(() => (
                             <Skeleton />
                         ))}
                     </div>

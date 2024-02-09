@@ -8,6 +8,7 @@ import Search from "./pages/Search";
 import style from "./css/App.module.css";
 import { setStatusHeader } from "./Redux/homeSlice";
 import { useAppDispatch } from "./Redux/hooks";
+import RecipesByCategory from "./pages/RecipesByCategory";
 function App() {
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainLayout></MainLayout>}>
                     <Route path="" element={<Home></Home>}></Route>
+                    <Route path="RecipesByCategory" element={<RecipesByCategory></RecipesByCategory>}></Route>
                     <Route path="Recipe" element={<Recipe></Recipe>}></Route>
                     <Route path="Search" element={<Search></Search>}></Route>
                 </Route>
