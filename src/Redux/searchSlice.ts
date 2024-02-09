@@ -122,7 +122,7 @@ const searchSlice = createSlice({
                     ({ recipe }: any) => recipe
                 ) as RecipeType[];
                 state.status = Status.FULFILLED;
-                state._cont = action.payload._links.next.href.slice(
+                state._cont =  action.payload._links.next?.href.slice(
                     action.payload._links.next.href.indexOf("_cont"),
                     action.payload._links.next.href.indexOf("&health")
                 );
