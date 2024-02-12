@@ -41,7 +41,9 @@ export default function Search() {
             })
         );
         window.scrollTo(0, 0);
+        
     }, [mealType, dishType, time, diet, cuisineType]);
+    
 
     return (
         <div className={style.wrapper}>

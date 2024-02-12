@@ -6,7 +6,7 @@ import { updateArray } from "../Redux/searchSlice";
 import { useAppDispatch } from "../Redux/hooks";
 export default function Category() {
     const dispatch = useAppDispatch();
-
+    
     return (
         <div className={style.wrapper_category}>
             <h3 className={style.title}>Pick Your Meal: </h3>

@@ -1,22 +1,22 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import style from "../css/Header.module.css";
 import search from "../assets/search.png";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { selectSearch } from "../Redux/searchSlice";
-import { setSearchInput } from "../Redux/searchSlice";
+
 import { fetchSearch } from "../Redux/searchSlice";
 import { selectHome } from "../Redux/homeSlice";
 import Recipes from "./Recipes";
-import { setOpen } from "../Redux/recipesByCategorySlice";
 
 const Header = () => {
     const dispatch = useAppDispatch();
     const { searchInput, mealType, dishType, diet, cuisineType } =
         useAppSelector(selectSearch);
     const { statusHeader } = useAppSelector(selectHome);
-    const { pathname } = useLocation();
+
+   
     return (
         <header
             className={
@@ -47,23 +47,7 @@ const Header = () => {
                     </h3>
                 </Link>
                 <div className={style.search}>
-                    {statusHeader === "small" ||
-                        (pathname !== "/Search" && (
-                            <input
-                                onChange={(e) =>
-                                    dispatch(setSearchInput(e.target.value))
-                                }
-                                value={searchInput}
-                                type="text"
-                                placeholder="Поиск"
-                            />
-                        ))}
-                    <button
-                        onMouseOver={() => dispatch(setOpen())}
-                        
-                    >
-                        <h4>Recipes</h4>
-                    </button>
+                    
                     <Recipes></Recipes>
                     <Link to="Search">
                         <button
