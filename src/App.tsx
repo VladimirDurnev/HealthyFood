@@ -33,8 +33,8 @@ function App() {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<MainLayout></MainLayout>}>
-                    <Route path="" element={<Home></Home>}></Route>
+                <Route element={<MainLayout></MainLayout>}>
+                    <Route index element={<Home></Home>}></Route>
                     <Route
                         path="RecipesByCategory"
                         element={<RecipesByCategory></RecipesByCategory>}
