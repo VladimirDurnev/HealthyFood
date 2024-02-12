@@ -17,7 +17,7 @@ export const fetchSearch = createAsyncThunk(
         _cont,
     }: {
         mealType: string[];
-        searchInput: string;
+        searchInput?: string;
         dishType: string[];
         cuisineType: string[];
         diet: string[];
@@ -26,7 +26,7 @@ export const fetchSearch = createAsyncThunk(
     }) => {
         const { data } = await axios.get(
             `https://api.edamam.com/api/recipes/v2?type=public${
-                "&q=" + searchInput
+                searchInput ? "&q=" + searchInput : "&q="
             }&app_id=${app_id}&app_key=${app_key}${
                 "&" + _cont
             }&calories=0-150&health=alcohol-free&imageSize=LARGE&excluded=drinks${
@@ -123,7 +123,7 @@ const searchSlice = createSlice({
                     ({ recipe }: any) => recipe
                 ) as RecipeType[];
                 state.status = Status.FULFILLED;
-                state._cont =  action.payload._links.next?.href.slice(
+                state._cont = action.payload._links.next?.href.slice(
                     action.payload._links.next.href.indexOf("_cont"),
                     action.payload._links.next.href.indexOf("&health")
                 );

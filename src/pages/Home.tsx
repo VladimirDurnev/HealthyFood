@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchRandom, setStatusHeader } from "../Redux/homeSlice";
+import { fetchRandom } from "../Redux/homeSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { selectHome } from "../Redux/homeSlice";
 import Category from "../Components/Category";
@@ -24,7 +24,7 @@ export default function Home() {
             dispatch(fetchRandom());
         }
         window.scrollTo(0, 0)
-    }, [dispatch]);
+    }, [data.length, dispatch]);
 
     return (
         <div>

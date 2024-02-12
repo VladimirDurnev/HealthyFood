@@ -87,7 +87,7 @@ export default function Recipes() {
                                     ))}
                                 {item.array.length > 6 && (
                                     <Link to="Search" className={style.view}>
-                                        {"view all " + ">"}
+                                        {"view all >"}
                                     </Link>
                                 )}
                             </div>

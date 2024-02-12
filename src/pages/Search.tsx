@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import style from "../css/Search.module.css";
 import Card from "../Components/Card";
 import close from "../assets/close.png";
@@ -33,7 +33,6 @@ export default function Search() {
         dispatch(
             fetchSearch({
                 mealType,
-                searchInput,
                 dishType,
                 time,
                 diet,
@@ -42,8 +41,8 @@ export default function Search() {
         );
         window.scrollTo(0, 0);
         
-    }, [mealType, dishType, time, diet, cuisineType]);
-    
+    }, [mealType, dishType, time, diet, cuisineType, dispatch]);
+
 
     return (
         <div className={style.wrapper}>

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Components/Header";
 import style from "../css/App.module.css";

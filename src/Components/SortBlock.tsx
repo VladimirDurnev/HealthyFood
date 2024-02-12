@@ -41,8 +41,12 @@ const SortBlock: React.FC<ISortBlock> = ({
     const [openBlock, setOpenBlock] = useState(false);
     const { mealType } = useAppSelector(selectSearch);
     useEffect(() => {
-        sortArray === mealTypeArray && mealType.length > 0 && setOpenBlock(!openBlock);
-    }, []);
+        const openSortBlock = () => {
+            sortArray === mealTypeArray && mealType.length > 0 && setOpenBlock(!openBlock);
+        }
+        openSortBlock()
+        
+    }, [mealType.length, openBlock, sortArray]);
 
     return (
         <>
