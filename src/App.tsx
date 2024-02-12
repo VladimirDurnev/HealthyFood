@@ -17,7 +17,7 @@ function App() {
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {
-                dispatch(setStatusHeader("small")); 
+                dispatch(setStatusHeader("small"));
             } else {
                 dispatch(setStatusHeader("big"));
             }
@@ -32,17 +32,14 @@ function App() {
 
     return (
         <div>
-            <Routes>
-                <Route element={<MainLayout></MainLayout>}>
-                    <Route index element={<Home></Home>}></Route>
-                    <Route
-                        path="RecipesByCategory"
-                        element={<RecipesByCategory></RecipesByCategory>}
-                    ></Route>
-                    <Route path="Recipe" element={<Recipe></Recipe>}></Route>
-                    <Route path="Search" element={<Search></Search>}></Route>
+             <Routes>
+                <Route element={<MainLayout/>}>
+                    <Route index element={<Home/>} />
+                    <Route path="RecipesByCategory" element={<RecipesByCategory />} />
+                    <Route path="Recipe" element={<Recipe />} />
+                    <Route path="Search" element={<Search />} />
                 </Route>
-                <Route path="*" element={<NotFound></NotFound>}></Route>
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </div>
     );
