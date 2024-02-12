@@ -24,7 +24,7 @@ export default function Home() {
             dispatch(fetchRandom());
         }
         window.scrollTo(0, 0)
-    }, [data.length, dispatch]);
+    }, []);
 
     return (
         <div>

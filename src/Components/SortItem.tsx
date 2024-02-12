@@ -39,7 +39,7 @@ const Sort: React.FC<ISort> = ({ title, typeInput, addItem, deleteItem }) => {
             setClearStatus(false);
             setAddStatus((prev) => !prev);
         }
-    }, [clearStatus]);
+    }, []);
 
     const hendleClick = () => {
         setAddStatus((prev) => !prev);

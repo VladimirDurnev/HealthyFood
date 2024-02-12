@@ -27,7 +27,7 @@ function App() {
         return () => {
             document.removeEventListener("scroll", handleScroll);
         };
-    }, [dispatch]);
+    }, []);
 
     return (
         <div>

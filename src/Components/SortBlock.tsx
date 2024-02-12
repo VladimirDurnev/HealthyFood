@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import style from "../css/SortBlock.module.css";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import Sort from "./SortItem";
-import { mealTypeArray, timeArray, dishTypeArray, dietArray, cuisineTypeArray } from "../static/StaticData";
+import {
+    mealTypeArray,
+    timeArray,
+    dishTypeArray,
+    dietArray,
+    cuisineTypeArray,
+} from "../static/StaticData";
 import { selectSearch, setTime, updateArray } from "../Redux/searchSlice";
 import { debounce } from "lodash";
 
 const handleSortItem = debounce(
     (key: string, title: string | undefined, dispatch, action) => {
-       
         action === updateArray
             ? dispatch(action({ key: key, value: title, operation: "add" }))
             : dispatch(action(title));
@@ -41,12 +46,10 @@ const SortBlock: React.FC<ISortBlock> = ({
     const [openBlock, setOpenBlock] = useState(false);
     const { mealType } = useAppSelector(selectSearch);
     useEffect(() => {
-        const openSortBlock = () => {
-            sortArray === mealTypeArray && mealType.length > 0 && setOpenBlock(!openBlock);
-        }
-        openSortBlock()
-        
-    }, [mealType.length, openBlock, sortArray]);
+        sortArray === mealTypeArray &&
+            mealType.length > 0 &&
+            setOpenBlock(!openBlock);
+    }, []);
 
     return (
         <>
@@ -117,7 +120,7 @@ const SortBlock: React.FC<ISortBlock> = ({
                                 typeInput={typeInput}
                                 title={item.title}
                             />
-                        ) :  sortArray === dietArray ? (
+                        ) : sortArray === dietArray ? (
                             <Sort
                                 addItem={() =>
                                     handleSortItem(
@@ -138,7 +141,7 @@ const SortBlock: React.FC<ISortBlock> = ({
                                 typeInput={typeInput}
                                 title={item?.title}
                             />
-                        ) :  sortArray === cuisineTypeArray ? (
+                        ) : sortArray === cuisineTypeArray ? (
                             <Sort
                                 addItem={() =>
                                     handleSortItem(
@@ -159,7 +162,7 @@ const SortBlock: React.FC<ISortBlock> = ({
                                 typeInput={typeInput}
                                 title={item?.title}
                             />
-                        ):  (
+                        ) : (
                             <></>
                         )
                     )}
@@ -168,4 +171,4 @@ const SortBlock: React.FC<ISortBlock> = ({
     );
 };
 
-export default SortBlock
+export default SortBlock;
