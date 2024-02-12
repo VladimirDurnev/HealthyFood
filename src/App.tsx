@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from "./Layout/MainLayout";
-import style from "./css/App.module.css";
 import { setStatusHeader } from "./Redux/homeSlice";
 import { useAppDispatch } from "./Redux/hooks";
 
@@ -28,7 +27,7 @@ function App() {
         return () => {
             document.removeEventListener("scroll", handleScroll);
         };
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>
@@ -44,5 +43,6 @@ function App() {
         </div>
     );
 }
+// 
 
 export default App;
