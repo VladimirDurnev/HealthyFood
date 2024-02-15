@@ -8,13 +8,13 @@ import style from "../css/Home.module.css";
 import reboot from "../assets/reboot.png";
 import { Status } from "../type/StatusEnum";
 import Skeleton from "../Components/Skeleton";
-
+import Loading from "../Components/Loading";
 
 export default function Home() {
     const dispatch = useAppDispatch();
     const [rebootStatus, setRebootStatus] = useState<boolean>(false);
     const { data, status } = useAppSelector(selectHome);
-    
+
     const hendleReboot = (): void => {
         setRebootStatus(true);
         setTimeout(() => setRebootStatus(false), 500);
@@ -24,7 +24,7 @@ export default function Home() {
         if (data.length === 0) {
             dispatch(fetchRandom());
         }
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }, []);
 
     return (
@@ -54,7 +54,6 @@ export default function Home() {
                         <img src={reboot} alt="reboot"></img>
                     </button>
                 </div>
-                 
                 {status === Status.PENDING ? (
                     <div className={style.card_wrapper}>
                         {[...new Array(20)].map(() => (

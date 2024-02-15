@@ -31,7 +31,7 @@ function App() {
             document.removeEventListener("scroll", handleScroll);
         };
     }, []);
-
+   
     return (
         <Suspense fallback={<Loading />}>
             <Routes>
@@ -50,18 +50,6 @@ function App() {
             </Routes>
         </Suspense>
 
-        // <Routes>
-        //         <Route element={<MainLayout />}>
-        //             <Route index element={<Home />} />
-        //             <Route
-        //                 path="RecipesByCategory"
-        //                 element={<RecipesByCategory />}
-        //             />
-        //             <Route path="Recipe" element={<Recipe />} />
-        //             <Route path="Search" element={<Search />} />
-        //         </Route>
-        //         <Route path="*" element={<NotFound />} />
-        //     </Routes>
     );
 }
 
