@@ -8,7 +8,7 @@ import style from "../css/Home.module.css";
 import reboot from "../assets/reboot.png";
 import { Status } from "../type/StatusEnum";
 import Skeleton from "../Components/Skeleton";
-import Loading from "../Components/Loading";
+
 
 export default function Home() {
     const dispatch = useAppDispatch();
@@ -40,7 +40,7 @@ export default function Home() {
             </div>
             <div className={style.shadow}></div>
             <Category></Category>
-            <Loading></Loading>
+            
             <div className={style.card_section}>
                 <div className={style.random_wrapper}>
                     <h3 className={style.card_title}>Random recipes: </h3>
