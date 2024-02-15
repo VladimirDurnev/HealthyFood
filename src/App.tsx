@@ -4,14 +4,14 @@ import Home from "./pages/Home";
 import MainLayout from "./Layout/MainLayout";
 import { setStatusHeader } from "./Redux/homeSlice";
 import { useAppDispatch } from "./Redux/hooks";
-import NotFound from "./pages/NotFound";
-import Recipe from "./pages/Recipe";
-import Search from "./pages/Search";
-import RecipesByCategory from "./pages/RecipesByCategory";
-// const NotFound = React.lazy(() => import("./pages/NotFound"));
-// const Recipe = React.lazy(() => import("./pages/Recipe"));
-// const Search = React.lazy(() => import("./pages/Search"));
-// const RecipesByCategory = React.lazy(() => import("./pages/RecipesByCategory"));
+// import NotFound from "./pages/NotFound";
+// import Recipe from "./pages/Recipe";
+// import Search from "./pages/Search";
+// import RecipesByCategory from "./pages/RecipesByCategory";
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+const Recipe = React.lazy(() => import("./pages/Recipe"));
+const Search = React.lazy(() => import("./pages/Search"));
+const RecipesByCategory = React.lazy(() => import("./pages/RecipesByCategory"));
 
 function App() {
     const dispatch = useAppDispatch();
