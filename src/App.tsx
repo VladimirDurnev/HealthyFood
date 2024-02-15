@@ -5,13 +5,13 @@ import MainLayout from "./Layout/MainLayout";
 import { setStatusHeader } from "./Redux/homeSlice";
 import { useAppDispatch } from "./Redux/hooks";
 
-
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 const Recipe = React.lazy(() => import("./pages/Recipe"));
 const Search = React.lazy(() => import("./pages/Search"));
 const RecipesByCategory = React.lazy(() => import("./pages/RecipesByCategory"));
 
 function App() {
+ 
     const dispatch = useAppDispatch();
     useEffect(() => {
         const handleScroll = () => {
@@ -28,21 +28,34 @@ function App() {
             document.removeEventListener("scroll", handleScroll);
         };
     }, []);
-
+    // const renderComponent = (component: JSX.Element) => startTransition(() => component)
     return (
-        <div>
-             <Routes>
-                <Route element={<MainLayout/>}>
-                    <Route index element={<Home/>} />
-                    <Route path="RecipesByCategory" element={<RecipesByCategory />} />
-                    <Route path="Recipe" element={<Recipe />} />
-                    <Route path="Search" element={<Search />} />
-                </Route>
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </div>
+        <Routes>
+            <Route element={<MainLayout />}>
+                <Route index element={<Home />} />
+                <Route
+                    path="RecipesByCategory"
+                    element={() => <RecipesByCategory />}
+                />
+                <Route path="Recipe" element={() => <Recipe />} />
+                <Route path="Search" element={() => <Search />} />
+            </Route>
+            <Route path="*" element={() => <NotFound />} />
+        </Routes>
+
+        // <Routes>
+        //         <Route element={<MainLayout />}>
+        //             <Route index element={<Home />} />
+        //             <Route
+        //                 path="RecipesByCategory"
+        //                 element={<RecipesByCategory />}
+        //             />
+        //             <Route path="Recipe" element={<Recipe />} />
+        //             <Route path="Search" element={<Search />} />
+        //         </Route>
+        //         <Route path="*" element={<NotFound />} />
+        //     </Routes>
     );
 }
-// 
 
 export default App;
