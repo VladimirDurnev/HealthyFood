@@ -1,10 +1,11 @@
-import React, { Suspense, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from "./Layout/MainLayout";
 import { setStatusHeader } from "./Redux/homeSlice";
 import { useAppDispatch } from "./Redux/hooks";
 import NotFound from "./pages/NotFound";
+
 // const NotFound = React.lazy(() => import("./pages/NotFound"));
 const Recipe = React.lazy(() => import("./pages/Recipe"));
 const Search = React.lazy(() => import("./pages/Search"));
@@ -30,18 +31,18 @@ function App() {
 
     return (
         <Routes>
-            <Route element={<MainLayout />}>
-                <Suspense fallback={<h1>Panding</h1>}>
-                    <Route index element={<Home />} />
-                    <Route
-                        path="RecipesByCategory"
-                        element={() => <RecipesByCategory />}
-                    />
-                    <Route path="Recipe" element={() => <Recipe />} />
-                    <Route path="Search" element={() => <Search />} />
-                </Suspense>
+            <Route path="/" element={<MainLayout></MainLayout>}>
+                <Route path="" element={<Home></Home>}></Route>
+                
+                <Route
+                    path="RecipesByCategory"
+                    element={<RecipesByCategory></RecipesByCategory>}
+                ></Route>
+                
+                <Route path="Recipe" element={<Recipe></Recipe>}></Route>
+                <Route path="Search" element={<Search></Search>}></Route>
             </Route>
-            <Route path="*" element={() => <NotFound />} />
+            <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
 
         // <Routes>

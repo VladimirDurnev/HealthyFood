@@ -9,6 +9,7 @@ import reboot from "../assets/reboot.png";
 import { Status } from "../type/StatusEnum";
 import Skeleton from "../Components/Skeleton";
 
+
 export default function Home() {
     const dispatch = useAppDispatch();
     const [rebootStatus, setRebootStatus] = useState<boolean>(false);
@@ -53,7 +54,7 @@ export default function Home() {
                         <img src={reboot} alt="reboot"></img>
                     </button>
                 </div>
-
+                 
                 {status === Status.PENDING ? (
                     <div className={style.card_wrapper}>
                         {[...new Array(20)].map(() => (
