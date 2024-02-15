@@ -1,6 +1,9 @@
-
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+}
 .loader {
-    margin: 300px auto;
+    margin: auto;
     width: 200px;
     height: 200px;
     border-width: 3px;
