@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from "./Layout/MainLayout";
@@ -11,7 +11,6 @@ const Search = React.lazy(() => import("./pages/Search"));
 const RecipesByCategory = React.lazy(() => import("./pages/RecipesByCategory"));
 
 function App() {
- 
     const dispatch = useAppDispatch();
     useEffect(() => {
         const handleScroll = () => {
@@ -28,20 +27,22 @@ function App() {
             document.removeEventListener("scroll", handleScroll);
         };
     }, []);
-    // const renderComponent = (component: JSX.Element) => startTransition(() => component)
+    
     return (
-        <Routes>
-            <Route element={<MainLayout />}>
-                <Route index element={<Home />} />
-                <Route
-                    path="RecipesByCategory"
-                    element={() => <RecipesByCategory />}
-                />
-                <Route path="Recipe" element={() => <Recipe />} />
-                <Route path="Search" element={() => <Search />} />
-            </Route>
-            <Route path="*" element={() => <NotFound />} />
-        </Routes>
+        <Suspense fallback={<h1>Panding</h1>}>
+            <Routes>
+                <Route element={<MainLayout />}>
+                    <Route index element={<Home />} />
+                    <Route
+                        path="RecipesByCategory"
+                        element={() => <RecipesByCategory />}
+                    />
+                    <Route path="Recipe" element={() => <Recipe />} />
+                    <Route path="Search" element={() => <Search />} />
+                </Route>
+                <Route path="*" element={() => <NotFound />} />
+            </Routes>
+        </Suspense>
 
         // <Routes>
         //         <Route element={<MainLayout />}>
