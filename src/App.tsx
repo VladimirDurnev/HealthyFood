@@ -4,8 +4,8 @@ import Home from "./pages/Home";
 import MainLayout from "./Layout/MainLayout";
 import { setStatusHeader } from "./Redux/homeSlice";
 import { useAppDispatch } from "./Redux/hooks";
-
-const NotFound = React.lazy(() => import("./pages/NotFound"));
+import NotFound from "./pages/NotFound";
+// const NotFound = React.lazy(() => import("./pages/NotFound"));
 const Recipe = React.lazy(() => import("./pages/Recipe"));
 const Search = React.lazy(() => import("./pages/Search"));
 const RecipesByCategory = React.lazy(() => import("./pages/RecipesByCategory"));
@@ -27,11 +27,11 @@ function App() {
             document.removeEventListener("scroll", handleScroll);
         };
     }, []);
-    
+
     return (
-        <Suspense fallback={<h1>Panding</h1>}>
-            <Routes>
-                <Route element={<MainLayout />}>
+        <Routes>
+            <Route element={<MainLayout />}>
+                <Suspense fallback={<h1>Panding</h1>}>
                     <Route index element={<Home />} />
                     <Route
                         path="RecipesByCategory"
@@ -39,10 +39,10 @@ function App() {
                     />
                     <Route path="Recipe" element={() => <Recipe />} />
                     <Route path="Search" element={() => <Search />} />
-                </Route>
-                <Route path="*" element={() => <NotFound />} />
-            </Routes>
-        </Suspense>
+                </Suspense>
+            </Route>
+            <Route path="*" element={() => <NotFound />} />
+        </Routes>
 
         // <Routes>
         //         <Route element={<MainLayout />}>
