@@ -33,27 +33,22 @@ function App() {
     }, []);
 
     return (
-        <Routes>
-            <Route
-                path="/"
-                element={
-                    <Suspense fallback={<Loading />}>
-                        <MainLayout></MainLayout>
-                    </Suspense>
-                }
-            >
-                <Route path="" element={<Home></Home>}></Route>
+        <Suspense fallback={<Loading />}>
+            <Routes>
+                <Route path="/" element={<MainLayout></MainLayout>}>
+                    <Route path="" element={<Home></Home>}></Route>
 
-                <Route
-                    path="RecipesByCategory"
-                    element={<RecipesByCategory></RecipesByCategory>}
-                ></Route>
+                    <Route
+                        path="RecipesByCategory"
+                        element={<RecipesByCategory></RecipesByCategory>}
+                    ></Route>
 
-                <Route path="Recipe" element={<Recipe></Recipe>}></Route>
-                <Route path="Search" element={<Search></Search>}></Route>
-            </Route>
-            <Route path="*" element={<NotFound></NotFound>}></Route>
-        </Routes>
+                    <Route path="Recipe" element={<Recipe></Recipe>}></Route>
+                    <Route path="Search" element={<Search></Search>}></Route>
+                </Route>
+                <Route path="*" element={<NotFound></NotFound>}></Route>
+            </Routes>
+        </Suspense>
 
         // <Routes>
         //         <Route element={<MainLayout />}>
