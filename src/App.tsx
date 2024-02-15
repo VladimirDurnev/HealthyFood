@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from "./Layout/MainLayout";
 import { setStatusHeader } from "./Redux/homeSlice";
 import { useAppDispatch } from "./Redux/hooks";
+import Loading from "./Components/Loading";
 // import NotFound from "./pages/NotFound";
 // import Recipe from "./pages/Recipe";
 // import Search from "./pages/Search";
@@ -33,14 +34,21 @@ function App() {
 
     return (
         <Routes>
-            <Route path="/" element={<MainLayout></MainLayout>}>
+            <Route
+                path="/"
+                element={
+                    <Suspense fallback={<Loading />}>
+                        <MainLayout></MainLayout>
+                    </Suspense>
+                }
+            >
                 <Route path="" element={<Home></Home>}></Route>
-                
+
                 <Route
                     path="RecipesByCategory"
                     element={<RecipesByCategory></RecipesByCategory>}
                 ></Route>
-                
+
                 <Route path="Recipe" element={<Recipe></Recipe>}></Route>
                 <Route path="Search" element={<Search></Search>}></Route>
             </Route>
